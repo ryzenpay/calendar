@@ -20,7 +20,7 @@ spec:
                 name: radicale
                 port:
                   number: 5232
-  # tls:
-  #   - hosts:
-  #       - cal.ryzen.me
-  #     secretName: radicale-tls
+  tls:
+    - hosts:
+        - cal.ryzen.me
+      secretName: radicale-tls
