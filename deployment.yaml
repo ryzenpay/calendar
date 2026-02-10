@@ -23,7 +23,7 @@ spec:
           ports:
             - containerPort: 3000
           envFrom:
-            - secretRef:
+          - secretRef:
               name: calcom-secret
           env:
           - name: DATABASE_URL
