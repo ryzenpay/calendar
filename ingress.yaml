@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: cert-issuer
-  name: calcom
-  namespace: calcom
+  name: radicale
+  namespace: radicale
 spec:
   ingressClassName: traefik
   rules:
@@ -15,10 +15,10 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: calcom
+                name: radicale
                 port:
-                  number: 3000
+                  number: 5232
   tls:
     - hosts:
         - cal.ryzen.me
-      secretName: calcom-tls
+      secretName: radicale-tls

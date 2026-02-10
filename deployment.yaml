@@ -2,51 +2,38 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: calcom
-  name: calcom
-  namespace: calcom
+    app: radicale
+  name: radicale
+  namespace: radicale
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: calcom
+      app: radicale
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: calcom
+        app: radicale
     spec:
+      securityContext:
+        fsGroup: 1000
       containers:
-        - image: calcom/cal.com:latest
-          name: calcom
+        - image: ghcr.io/kozea/radicale:stable
+          name: radicale
           ports:
-            - containerPort: 3000
-          envFrom:
-          - secretRef:
-              name: calcom-secret
-          env:
-          - name: DATABASE_URL
-            valueFrom:
-              secretKeyRef:
-                name: calcom-postgresql-app
-                key: uri
-          - name: DATABASE_DIRECT_URL
-            valueFrom:
-              secretKeyRef:
-                name: calcom-postgresql-app
-                key: uri
-          - name: SAML_DATABASE_URL
-            valueFrom:
-              secretKeyRef:
-                name: calcom-postgresql-app
-                key: uri
-          - name: SAML_ADMINS
-            value: "ryzen@ryzen.me"
-          - name: NEXT_PUBLIC_WEBAPP_URL
-            value: https://cal.ryzen.me
-          - name: NEXT_PUBLIC_WEBSITE_URL
-            value: https://cal.ryzen.me
-          - name: ALLOWED_HOSTNAMES
-            value: '"cal.ryzen.me","localhost:3000"'
+            - containerPort: 5232
+          volumeMounts:
+          - name: data
+            mountPath: /var/lib/radicale
+          - name: config
+            mountPath: /etc/radicale
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: radicale-config
+      - name: data
+        persistentVolumeClaim:
+          claimName: radicale-data
       restartPolicy: Always
