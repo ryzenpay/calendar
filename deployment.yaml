@@ -36,6 +36,13 @@ spec:
               secretKeyRef:
                 name: calcom-postgresql-app
                 key: uri
+          - name: SAML_DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: calcom-postgresql-app
+                key: uri
+          - name: SAML_ADMINS
+            value: "ryzen@ryzen.me"
           - name: NEXT_PUBLIC_WEBAPP_URL
             value: https://cal.ryzen.me
           - name: ALLOWED_HOSTNAMES
