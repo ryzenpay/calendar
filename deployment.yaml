@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: calcom
+  name: calcom
+  namespace: calcom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calcom
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: calcom
+    spec:
+      containers:
+        - image: calcom/cal.com:latest
+          name: calcom
+          ports:
+            - containerPort: 3000
+          env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: calcom-postgresql-app
+                key: uri
+      restartPolicy: Always
