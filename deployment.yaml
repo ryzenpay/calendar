@@ -38,10 +38,6 @@ spec:
                 key: uri
           - name: NEXT_PUBLIC_WEBAPP_URL
             value: https://cal.ryzen.me
-          - name: NEXT_PUBLIC_WEBSITE_URL
-            value: https://cal.ryzen.me
-          - name: NEXT_PUBLIC_EMBED_LIB_URL
-            value: https://cal.ryzen.me/embed/embed.js
-          - name: NEXTAUTH_URL
-            value: https://cal.ryzen.me
+          - name: ALLOWED_HOSTNAMES
+            value: "cal.ryzen.me,localhost:3000"
       restartPolicy: Always
