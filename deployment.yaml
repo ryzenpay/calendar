@@ -42,4 +42,6 @@ spec:
             value: https://cal.ryzen.me
           - name: NEXT_PUBLIC_EMBED_LIB_URL
             value: https://cal.ryzen.me/embed/embed.js
+          - name: NEXTAUTH_URL
+            value: https://cal.ryzen.me
       restartPolicy: Always
