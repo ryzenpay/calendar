@@ -3,14 +3,13 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: cert-issuer
+    traefik.ingress.kubernetes.io/router.middlewares: radicale-radicale-middleware@kubernetescrd
   name: radicale
   namespace: radicale
 spec:
   ingressClassName: traefik
   rules:
     - host: cal.ryzen.me
-      middlewares:
-        - name: radicale-middleware
       http:
         paths:
           - path: /
