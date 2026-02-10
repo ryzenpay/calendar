@@ -45,6 +45,8 @@ spec:
             value: "ryzen@ryzen.me"
           - name: NEXT_PUBLIC_WEBAPP_URL
             value: https://cal.ryzen.me
+          - name: NEXT_PUBLIC_WEBSITE_URL
+            value: https://cal.ryzen.me
           - name: ALLOWED_HOSTNAMES
             value: '"cal.ryzen.me","localhost:3000"'
       restartPolicy: Always
