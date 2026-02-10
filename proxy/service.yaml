@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: radicale-proxy
+  name: radicale-proxy
+  namespace: radicale
+spec:
+  ports:
+  - name: http
+    port: 4180
+    targetPort: 4180
+  selector:
+    app: radicale-proxy

@@ -30,10 +30,10 @@ spec:
           - name: config
             mountPath: /etc/radicale
       volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: radicale-config
       - name: data
         persistentVolumeClaim:
           claimName: radicale-data
-      restartPolicy: Always
+      - name: config
+        configMap:
+          name: radicale-config
+      restartPolicy: Always 

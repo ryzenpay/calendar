@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: radicale-config
+  namespace: radicale
+data:
+  config: |
+    [server]
+    hosts = 0.0.0.0:5232
+
+    [storage]
+    filesystem_folder = ~/.var/lib/radicale/collections
+
+    [auth]
+    type = http_x_remote_user
+    

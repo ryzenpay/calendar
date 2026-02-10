@@ -9,6 +9,8 @@ spec:
   ingressClassName: traefik
   rules:
     - host: cal.ryzen.me
+      middlewares:
+        - name: radicale-middleware
       http:
         paths:
           - path: /
