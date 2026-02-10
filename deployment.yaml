@@ -36,4 +36,10 @@ spec:
               secretKeyRef:
                 name: calcom-postgresql-app
                 key: uri
+          - name: NEXT_PUBLIC_WEBAPP_URL
+            value: https://cal.ryzen.me
+          - name: NEXT_PUBLIC_WEBSITE_URL
+            value: https://cal.ryzen.me
+          - name: NEXT_PUBLIC_EMBED_LIB_URL
+            value: https://cal.ryzen.me/embed/embed.js
       restartPolicy: Always
