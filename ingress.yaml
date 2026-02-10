@@ -12,13 +12,6 @@ spec:
     - host: cal.ryzen.me
       http:
         paths:
-          - path: /oauth2
-            pathType: Prefix
-            backend:
-              service:
-                name: radicale-proxy
-                port:
-                  number: 4180
           - path: /
             pathType: Prefix
             backend:

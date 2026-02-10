@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: radicale-middleware
+  namespace: apps
+spec:
+  plugin:
+    oidc:
+      issuer: https://auth.ryzen.me/realms/public
+      clientId: "radicale"
+      clientSecret: "urn:k8s:secret:radicale-secret:client_secret"
+      redirectUrl: /oidc/callback
+      forwardHeaders:
+        X-Remote-User: username
