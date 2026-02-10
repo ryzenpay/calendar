@@ -28,4 +28,9 @@ spec:
               secretKeyRef:
                 name: calcom-postgresql-app
                 key: uri
+          - name: NEXTAUTH_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: calcom-secret
+                key: NEXTAUTH_SECRET
       restartPolicy: Always
