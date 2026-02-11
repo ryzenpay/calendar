@@ -5,7 +5,7 @@ metadata:
   namespace: radicale
 spec:
   forwardAuth:
-    address: http://radicale-auth:4181
+    address: http://radicale-auth.radicale.svc.cluster.local:4181
     trustForwardHeader: true
     authResponseHeaders:
       - X-Forwarded-User
