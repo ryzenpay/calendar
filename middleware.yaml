@@ -5,7 +5,7 @@ metadata:
   namespace: radicale
 spec:
   forwardAuth:
-    address: http://radicale-proxy-oauth2-proxy.radicale.svc:80/oauth2/auth
+    address: http://radicale-proxy-oauth2-proxy.radicale.svc.cluster.local:80/oauth2/auth
     trustForwardHeader: true
     authResponseHeaders:
       - X-Auth-Request-User

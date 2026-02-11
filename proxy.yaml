@@ -9,12 +9,9 @@ spec:
   targetNamespace: radicale
   valuesContent: |-
     config:
-      clientID: radicale
-      requiredSecretKeys:
-        - client-secret
-        - cookie-secret
       existingSecret: radicale-secret
       configFile: |-
         email_domains = [ "*" ]
         upstreams = [ "file:///dev/null" ]
         reverse_proxy = true
+        set_xauthrequest = true

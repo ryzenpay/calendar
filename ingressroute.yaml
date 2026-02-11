@@ -10,7 +10,7 @@ spec:
     - match: Host(`cal.ryzen.me`)
       kind: Rule
       middlewares:
-        - name: radicale-oauth-middleware
+        - name: radicale-middleware
       services:
         - name: radicale 
           port: 5232
