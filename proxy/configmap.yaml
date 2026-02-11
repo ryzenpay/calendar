@@ -1,26 +1,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: radicale-config
+  name: radicale-proxy-config
   namespace: radicale
 data:
-  config: |
-    [server]
-    hosts = 0.0.0.0:5232
-
-    [storage]
-    filesystem_folder = ~/.var/lib/radicale/collections
-
-    [auth]
-    type = http_x_remote_user
-
   nginx.conf: |
     events {}
     http {
       server {
         listen 8080;
         location / {
-          proxy_pass http://127.0.0.1:5232;
+          proxy_pass http://radicale:5232;
 
           proxy_set_header X-Remote-User $http_x_forwarded_user;
           

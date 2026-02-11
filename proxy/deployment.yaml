@@ -1,43 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: radicale-proxy
-  namespace: radicale
   labels:
     app: radicale-proxy
+  name: radicale-proxy
+  namespace: radicale
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: radicale-proxy
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: radicale-proxy
     spec:
-      terminationGracePeriodSeconds: 60
       containers:
-      - image: thomseddon/traefik-forward-auth:2
-        name: radicale-proxy
-        ports:
-        - containerPort: 4181
-          protocol: TCP
-        env:
-        - name: SECRET
-          valueFrom:
-            secretKeyRef:
-              name: radicale-secret
-              key: cookie-secret
-        - name: DEFAULT_PROVIDER
-          value: oidc
-        - name: PROVIDERS_OIDC_ISSUER_URL
-          value: https://auth.ryzen.me/realms/public
-        - name: PROVIDERS_OIDC_CLIENT_ID
-          value: radicale
-        - name: PROVIDERS_OIDC_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: radicale-secret
-              key: client-secret
+        - image: nginx:alpine
+          name: nginx
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config
+              mountPath: /etc/nginx
+      volumes:
+      - name: config
+        configMap:
+          name: radicale-proxy-config
+      restartPolicy: Always 

@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: cert-issuer
-    traefik.ingress.kubernetes.io/router.middlewares: radicale-radicale-middleware@kubernetescrd
+    #traefik.ingress.kubernetes.io/router.middlewares: radicale-radicale-middleware@kubernetescrd
   name: radicale
   namespace: radicale
 spec:
@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: radicale
+                name: radicale-proxy
                 port:
                   number: 8080
   tls:

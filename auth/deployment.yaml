@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radicale-auth
+  namespace: radicale
+  labels:
+    app: radicale-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radicale-auth
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: radicale-auth
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+      - image: thomseddon/traefik-forward-auth:2
+        name: radicale-auth
+        ports:
+        - containerPort: 4181
+          protocol: TCP
+        env:
+        - name: LOG_LEVEL
+          value: info
+        - name: SECRET
+          valueFrom:
+            secretKeyRef:
+              name: radicale-secret
+              key: cookie-secret
+        - name: DEFAULT_PROVIDER
+          value: oidc
+        - name: PROVIDERS_OIDC_ISSUER_URL
+          value: https://auth.ryzen.me/realms/public
+        - name: PROVIDERS_OIDC_CLIENT_ID
+          value: radicale
+        - name: PROVIDERS_OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: radicale-secret
+              key: client-secret
