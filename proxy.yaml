@@ -1,0 +1,20 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: radicale-proxy
+  namespace: radicale
+spec:
+  chart: oauth2-proxy
+  repo: https://oauth2-proxy.github.io/manifests
+  targetNamespace: radicale
+  valuesContent: |-
+    config:
+      clientID: radicale
+      requiredSecretKeys:
+        - client-secret
+        - cookie-secret
+      existingSecret: radicale-secret
+      configFile: |-
+        email_domains = [ "*" ]
+        upstreams = [ "file:///dev/null" ]
+        reverse_proxy = true

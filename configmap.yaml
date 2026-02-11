@@ -13,4 +13,4 @@ data:
 
     [auth]
     type = http_x_remote_user
-    
+    http_x_remote_user_header = X-Auth-Request-User
