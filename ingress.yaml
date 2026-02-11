@@ -18,7 +18,7 @@ spec:
               service:
                 name: radicale
                 port:
-                  number: 5232
+                  number: 8080
   tls:
     - hosts:
         - cal.ryzen.me

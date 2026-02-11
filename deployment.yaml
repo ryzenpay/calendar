@@ -28,7 +28,17 @@ spec:
           - name: data
             mountPath: /var/lib/radicale
           - name: config
-            mountPath: /etc/radicale
+            mountPath: /etc/radicale/config
+            subPath: config
+        - image: nginx:alpine
+          name: radicale-proxy
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
       volumes:
       - name: data
         persistentVolumeClaim:
