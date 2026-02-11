@@ -34,6 +34,8 @@ spec:
             secretKeyRef:
               name: radicale-secret
               key: secret
+        - name: DEFAULT_PROVIDER
+          value: oidc
         - name: PROVIDERS_OIDC_ISSUER_URL
           value: https://auth.ryzen.me/realms/public
         - name: PROVIDERS_OIDC_CLIENT_ID
