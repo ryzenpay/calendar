@@ -15,6 +15,7 @@ data:
     type = http_x_remote_user
 
   nginx.conf: |
+    events {}
     http {
       server {
         listen 8080;
